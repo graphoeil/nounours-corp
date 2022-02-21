@@ -1,0 +1,277 @@
+@charset "UTF-8";
+/* CSS Document */
+@import url('reset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Covered+By+Your+Grace&family=Roboto:wght@300;500&display=swap');
+
+/* /////////////////////////////// */
+/*               BODY              */
+/* /////////////////////////////// */
+/* Il faut garder les 2 propriétés webkit pour le lissage des caractères. */
+body,html{ -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; min-height: 100%; height: 100%; }
+*{ box-sizing: border-box; text-decoration: none; outline: none; }
+
+/* /////////////////////////////// */
+/*          TYPOS & COULEURS       */
+/* /////////////////////////////// */
+:root{
+	/* Typos */
+	--covered: 'Covered by Your Grace', cursive;
+	--roboto: 'Roboto', sans-serif;
+	--bree: 'Bree serif', serif;
+	/* Couleurs */
+	--noir: #333;
+	--orange: #eeaa7b;
+	--turquoise: #07889b;
+	--blancTransparent: rgba(255,255,255,0);
+	--blancOpaque: rgba(255,255,255,1);
+}
+
+/* /////////////////////////////// */
+/*              LOADER             */
+/* /////////////////////////////// */
+.loader{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: white;
+	overflow: hidden; z-index: 999; }
+.conteneurCarreSol{ position: absolute; width: 100%; max-width: 500px; height: 200px; 
+	top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.sol{ position: absolute; width: 100%; height: 50%; top: 50%; left: 0; background-color: white;
+	border-top: 1px solid var(--turquoise); z-index: 2; }
+.carreRoule{ position: absolute; top: calc(50% - 45px); left: 0%; width: 50px; height: 50px;
+	background-color: var(--turquoise); z-index: 1; }
+
+/* /////////////////////////////// */
+/*             POLYGONE            */
+/* /////////////////////////////// */
+.backgroundPolygone{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
+.polygone{ position: absolute; top: -1660px; left: 20px; transition: 0.7s top ease-in-out, 0.7s left ease-in-out; }
+.polygone.ouvert{ top: -200%; left: -200%; }
+
+/* /////////////////////////////// */
+/*              HEADER             */
+/* /////////////////////////////// */
+header{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
+.innerHeader{ width: 100%; padding: 16px 16px 0 16px; background-color: var(--blancTransparent); 
+	transition: 0.35s background ease-in-out; }
+.logoHeader{ display: inline-block; padding: 0 0 16px 0; font-family: var(--covered); font-size: 30px;
+	letter-spacing: 0.53px; color: var(--noir); }
+/* Btn menu mobile */
+.btnMenuMobile{ position: absolute; top: 0; right: 0; width: 75px; height: 65px; pointer-events: visible; z-index: 100; }
+.barresMenuMobile{ position: absolute; top: 23px; right: 25px; width: 26px; height: 14px; }
+.barresMenuMobile span{ display: block; position: absolute; left: 0; width: 100%; height: 2px; background-color: white;
+	transition: 0.35s ease-in-out; }
+.barresMenuMobile span:nth-child(1){ top: 0; }
+.barresMenuMobile span:nth-child(2){ top: 6px; }
+.barresMenuMobile span:nth-child(3){ top: 12px; }
+.barresMenuMobile.ouvert span{ background-color: white !important; }
+.barresMenuMobile.ouvert span:nth-child(1){ top: 10px; transform: rotate(135deg); }
+.barresMenuMobile.ouvert span:nth-child(2){ opacity: 0; left: 100%; }
+.barresMenuMobile.ouvert span:nth-child(3){ top: 10px; transform: rotate(-135deg); }
+/* Overlay mobile */
+.overlayMobile{ display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+	z-index: 10px; background-color: rgba(0,0,0,0.7); }
+.overlayMobile.visible{ pointer-events: visible; }
+/* Navigation */
+nav{ display: none; position: absolute; width: 100%; top: 50%; left: 0; transform: translateY(-50%); pointer-events: visible;
+	text-align: center; z-index: 99; }
+nav a{ display: block; position: relative; padding: 10px; margin: 0 0 20px 0; color: white;
+	font-family: var(--roboto); font-weight: 300; font-size: 20px; letter-spacing: 0.3px; }
+nav a:last-child{ margin: 0; }
+/* Ombre */
+.innerHeader.ombre{ background-color: var(--blancOpaque); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.innerHeader.ombre .barresMenuMobile span{ background-color: var(--noir); }
+
+/* /////////////////////////////// */
+/*               MAIN              */
+/* /////////////////////////////// */
+section{ position: relative; padding: 75px 16px 10px 16px; z-index: 10; }
+article{ text-align: center; margin: 0 0 45px 0; }
+article h1{ margin: 0 0 10px 0; font-family: var(--bree); font-size: 22px; line-height: 30px; 
+	letter-spacing: 0.6px; color: var(--noir); }
+article p{ margin: 0 0 15px 0; font-family: var(--roboto); font-size: 12px; line-height: 18px; 
+	font-weight: 300; letter-spacing: 0.6px; color: var(--noir); }
+article p span{ font-weight: 500; }
+form{ display: inline-block; position: relative; width: 240px; padding: 10px; background-color: white;
+	box-shadow: 2px 6px 10px rgba(0,0,0,0.2); border-radius: 100px; transition: 0.35s ease-in-out; }
+form input{ display: block; width: 100%; padding: 3px 7px; border: none; color: var(--noir); background-color: transparent;
+	font-size: 12px; font-family: var(--roboto); font-weight: 500; letter-spacing: 0.55px; opacity: 1;
+	transition: 0.35s opacity ease-in-out; }
+form input:disabled{ opacity: 0; }
+form button{ display: block; position: absolute; top: 0; right: 0; transform: translateX(0%); width: 48px; height: 100%; 
+	border: none; background-color: #27ae60; border-top-right-radius: 100px; border-bottom-right-radius: 100px; 
+	transition: 0.35s ease-in-out; }
+form button:disabled{ background-color: firebrick; }
+form button span{ display: inline-block; position: absolute; background-color: white; height: 2px; 
+	border-radius: 30px; transition: 0.35s ease-in-out; }
+form button span:nth-child(1){ top: calc(50% - 2px); left: 10px; width: 23px; }
+form button span:nth-child(2){ top: calc(50% - 5px); left: 25px; width: 10px; transform: rotate(45deg); }
+form button span:nth-child(3){ top: calc(50% + 1px); left: 25px; width: 10px; transform: rotate(-45deg); }
+/* Envoyé !!! */
+form.envoye{ background-color: transparent; box-shadow: 2px 6px 10px rgba(0,0,0,0); }
+form.envoye button{ width: 48px; height: 48px; right: calc(50% - 48px); transform: translateX(-50%) rotate(90deg); 
+	border-radius: 100%; }
+form.envoye button:disabled{ background-color: #27ae60 !important; }
+form.envoye button span{ height: 3px; }
+form.envoye button span:nth-child(1){ opacity: 0; }
+form.envoye button span:nth-child(2){ width: 30px; left: 10px; }
+form.envoye button span:nth-child(3){ width: 10px; top: calc(50% - -8px); left: 27px; }
+/* Iphone */
+.iphone{ position: relative; width: 100%; text-align: center; font-family: var(--roboto); letter-spacing: 0.6px; }
+.iphoneSVG{ display: block; width: 100%; margin: 0 auto; }
+.iphoneSVG img{ display: block; width: 100%; height: 100%; overflow: hidden; -webkit-filter: drop-shadow(2px 6px 10px rgba(0,0,0,0.2)); 
+	filter: drop-shadow(2px 6px 10px rgba(0,0,0,0.2)); }
+.innerIphone{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 60px 30px 30px 30px; }
+.swiper{ height: 100%; }
+/* Fiche nounours */
+.headerFiche{ margin: 0 0 10px 0; }
+.photoNounours{ display: inline-block; width: 90px; height: 90px; border-radius: 50%; margin: 0 0 5px 0; overflow: hidden; }
+.photoNounours img{ display: block; width: 100%; height: 100%; object-fit: cover; }
+.headerFiche h2{ font-size: 12px; font-weight: 500; margin: 0 0 5px 0; }
+.headerFiche h3{ font-size: 10px; font-weight: 300; margin: 0 0 15px 0; }
+.socialFiche{ width: 100%; }
+.socialFiche span{ display: inline-block; width: 50%; padding: 10px; font-size: 10px; text-align: center; font-weight: 300; }
+.socialFiche span strong{ display: block; font-weight: 500; font-size: 14px; padding: 0 0 3px 0; }
+.photosFiche{ position: absolute; left: 0; bottom: 0; width: 100%; height: calc(100% - 200px); overflow: hidden; }
+.photo{ width: 100%; height: 30%; margin: 0 0 6% 0; overflow: hidden; border-radius: 10px; }
+.photo img{ display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Pagination */
+.iphonePagination{ display: inline-block; position: absolute; top: 20px; bottom: auto !important; }
+.swiper-pagination-bullet{ opacity: 0.5 !important; background-color: var(--turquoise) !important; margin: 0 10px 0 0 !important; }
+.iphonePagination .swiper-pagination-bullet:last-child{ margin: 0; }
+.swiper-pagination-bullet-active{ opacity: 1 !important; }
+
+/* /////////////////////////////// */
+/*              FOOTER             */
+/* /////////////////////////////// */
+footer{ padding: 20px 10px; text-align: center; font-family: var(--roboto); font-size: 12px; font-weight: 300; z-index: 9; }
+footer span{ font-weight: 500; }
+
+/* /////////////////////////////// */
+/*     >= 375px | iPhone 6,7,8     */
+/* /////////////////////////////// */
+@media only screen and (min-width: 375px) and (orientation: landscape){
+	/* Header */
+    nav a{ margin: 0 0 5px 0; }
+}
+@media only screen and (min-width: 375px) and (orientation: portrait){
+	/* Header */
+	nav a{ margin: 0 0 30px 0; }
+	/* Main */
+	section{ padding: 75px 20px 10px 20px; }
+	article h1{ font-size: 24px; }
+}
+
+/* /////////////////////////////// */
+/*     >= 768px | iPad portrait    */
+/* /////////////////////////////// */
+@media only screen and (min-width: 768px){
+	/* Polygone */
+	.polygone{ top: -1520px; left: 210px; }
+	/* Header */
+	header{ height: auto; }
+	.innerHeader{ padding: 20px 20px 0 20px; }
+	.logoHeader{ padding: 0 0 20px 0; font-size: 36px; }
+	.btnMenuMobile, .overlayMobile{ display: none; }
+	nav{ display: inline-block; width: auto; top: 20px; left: auto; right: 30px; transform: none;
+		text-align: right; }
+	nav a{ display: inline-block; margin: 0 5px 0 0; font-size: 14px; font-weight: 500; }
+	.innerHeader.ombre nav a{ color: var(--noir); }
+	/* Main */
+	section{ padding: 125px 50px 10px 50px; }
+	article{ margin: 0 0 40px 0; }
+	article h1{ font-size: 28px; letter-spacing: 0.8px; line-height: 45px; }
+	article p{ font-size: 14px; letter-spacing: 0.65px; line-height: 20px; margin: 0 0 30px 0; }
+	form{ width: 340px; padding: 15px 20px; }
+	form input{ font-size: 14px; }
+	.iphone{ width: 410px; margin: 0 auto; }
+	.innerIphone{ padding: 80px 40px 40px 40px; }
+	.iphoneSVG{ display: inline-block; width: 100%; }
+	.iphonePagination{ top: 20%; left: auto !important; right: -30px; width: 10px !important; height: 50px; 
+		transform: translateY(-50%); }
+	.swiper-pagination-bullet{ background-color: white !important; margin: 0 !important; }
+	.swiper-pagination-bullet-active{ background-color: white !important; }
+}
+
+/* /////////////////////////////// */
+/*   >= 1024px | iPadPro portrait  */
+/* /////////////////////////////// */
+@media only screen and (min-width: 1024px) and (orientation: portrait){
+	/* Main */
+	section{ padding: 125px 100px 100px 100px; }
+	article h1{ font-size: 44px; line-height: 52px; padding: 0 110px; margin: 0 0 30px 0; }
+	article p{ font-size: 16px; line-height: 22px; padding: 0 100px; }
+}
+
+/* /////////////////////////////// */
+/*     >= 1024px | iPad paysage    */
+/* /////////////////////////////// */
+@media only screen and (min-width: 1024px) and (orientation: landscape){
+	/* Polygone */
+	.polygone{ top: -1560px; left: 290px; }
+	/* Header */
+	nav a{ margin: 0 10px 0 0; }
+	/* Main */
+	section{ padding: 110px 60px 30px 0; text-align: right; }
+	article{ position: absolute; width: 460px; top: 40%; left: 30px; margin: 0; 
+		transform: translateY(-50%); text-align: justify; }
+	article h1{ font-size: 36px; text-align: justify; margin: 0 0 30px 0; }
+	article p{ font-size: 15px; letter-spacing: 0.7px; line-height: 24px; 
+		text-align: justify; padding: 0 60px 0 0; }
+	form{ width: 100%; }
+	.iphone{ display: inline-block; }
+	.iphonePagination{ top: 40%; }
+	/* Footer */
+	footer{ font-size: 14px; }
+}
+
+/* /////////////////////////////// */
+/*  >= 1366px | iPadPro & Laptop   */
+/* /////////////////////////////// */
+@media only screen and (min-width: 1366px){
+	/* Polygone */
+	.polygone{ left: 33%; }
+	/* Header */
+	nav{ right: 50px; }
+	nav a{ margin: 0 20px 0 0; font-size: 15px; }
+	html.no-touchevents nav a::after{ content: ''; display: block; position: absolute; width: 0;
+		left: 0; bottom: 0; border-bottom: 2px solid white; transition: 0.35s width ease-in-out; }
+	html.no-touchevents .innerHeader.ombre nav a::after{ border-bottom: 2px solid var(--noir); }
+	html.no-touchevents nav a:hover::after{ width: 100%; }
+	/* Main */
+	section{ padding: 120px 9% 10px 0; margin: 0 0 30px 0; }
+	article{ top: 45%; left: 4%; width: 580px; }
+	article h1{ font-size: 44px; line-height: 52px; }
+	article p{ font-size: 16px; line-height: 25px; padding: 0 100px 0 0; }
+	.iphonePagination{ top: 50%; }
+}
+
+/* /////////////////////////////// */
+/*       >= 1690px | iMac          */
+/* /////////////////////////////// */
+@media only screen and (min-width: 1690px){
+	section{ padding: 130px 14% 70px 0; margin: 0; }
+	article{ top: 45%; left: 7%; width: 600px; }
+	article h1{ margin: 0 0 40px 0; font-size: 48px; line-height: 56px; }
+	article p{ margin: 0 0 40px 0; padding: 0 120px 0 0; }
+	.iphone{ width: 440px; }
+}
+
+/* /////////////////////////////// */
+/*    >= 2560px | iMac fullscreen  */
+/* /////////////////////////////// */
+@media only screen and (min-width: 2560px){
+	/* Header */
+	.innerHeader{ padding: 30px 30px 0 30px; }
+	.logoHeader{ padding: 0 0 30px 0; font-size: 48px; }
+	nav{ top: 30px; }
+	nav a{ margin: 0 60px 0 0; font-size: 17px; }
+	/* Main */
+	section{ padding: 150px 16% 10px 0; }
+	article{ width: 680px; }
+	article h1{ margin: 0 0 50px 0; font-size: 54px; line-height: 62px; }
+	article p{ font-size: 18px; line-height: 28px; padding: 0 160px 0 0; 
+		margin: 0 0 50px 0; }
+	form input{ font-size: 16px; }
+	.iphone{ width: 530px; }
+	.innerIphone{ padding: 100px 50px 40px 50px; }
+	/* Footer */
+	footer{ font-size: 16px; }
+}

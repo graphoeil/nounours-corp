@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+// Imports
+import React from 'react';
+import './css/displayMain.css';
+import { useNounoursContext } from './context/Context';
+import Loader from "./components/Loader";
+import Polygone from "./components/Polygone";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Footer from "./components/Footer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// Fonction
+function App(){
+	// Context
+	const { loaderVisible } = useNounoursContext();
+	// Return
+	return(
+		<React.Fragment>
 
+			{/* Loader */}
+			{
+				loaderVisible && <Loader/>
+			}
+			{/* Loader */}
+
+			{/* Polygone */}
+			<Polygone/>
+			{/* Polygone */}
+
+			{/* Header */}
+			<Header/>
+			{/* Header */}
+
+			{/* Hero */}
+			<Hero/>
+			{/* Hero */}
+
+			{/* Footer */}
+			<Footer/>
+			{/* Footer */}
+
+		</React.Fragment>
+	);
+};
+
+// Export
 export default App;
